@@ -1,0 +1,11 @@
+time sqlite3 smsarc.db < sql/smsarc.sql
+
+script/ra_smsarc_create.pl \
+   model DB \
+   DBIC::Schema \
+   RA::SmsArc::DB \
+   create=static generate_pod=0 \
+   dbi:SQLite:smsarc.db \
+   sqlite_unicode=1 \
+   on_connect_call='use_foreign_keys' \
+   quote_names=1 
