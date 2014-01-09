@@ -32,7 +32,7 @@ sub _parse_file {
   die "Unexpected XML data" unless (ref($data->{sms}) eq 'ARRAY');
   
   my @messages = map {{ %$_,
-    date_dt => DateTime->from_epoch( epoch => $_->{date} ),
+    date_dt => DateTime->from_epoch( epoch => int($_->{date}/1000) ),
   }} @{$data->{sms}};
   
   return \@messages;

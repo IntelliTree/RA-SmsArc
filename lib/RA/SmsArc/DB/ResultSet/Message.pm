@@ -21,7 +21,7 @@ sub import {
   
   $self->populate([ map {{
     phone_id  => $phone_id,
-    timestamp => $_->{date_dt},
+    timestamp => join(' ',$_->{date_dt}->ymd,$_->{date_dt}->hms),
     number => $ContactRs->find_or_create({
       number => $_->{address},
       full_name => $_->{contact_name}
