@@ -9,13 +9,12 @@ use RapidApp::Include qw(sugar perlutil);
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 
-use RA::SmsArc::Parser;
+use RA::SmsArc;
 
 my ($phone_id, $xml) = @ARGV;
 
-
 # Just for testing...
+#my $Obj = RA::SmsArc::Parser->new( file => $xml );
+#scream( $Obj );
 
-my $Obj = RA::SmsArc::Parser->new( file => $xml );
-
-scream( $Obj );
+RA::SmsArc->model('DB::Message')->import($phone_id, $xml);
