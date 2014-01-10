@@ -3,6 +3,7 @@
 1. Model Design
     - prelim DDL: 27 min
     - create db + catalyst model: 3 min
+    - DDL tweaks: 20 min
 
 2. Biz Logic
     - RA::SmsArc::Parser: 32 mins

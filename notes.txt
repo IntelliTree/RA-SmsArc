@@ -9,3 +9,11 @@ script/ra_smsarc_create.pl \
    sqlite_unicode=1 \
    on_connect_call='use_foreign_keys' \
    quote_names=1 
+
+   
+# regenerate:
+dbicdump -o dump_directory=./lib RA::SmsArc::DB \
+  -o debug=1 -o rescan=1 -o use_moose=1 \
+  -o components='["InflateColumn::DateTime"]' \
+  -o generate_pod=0 \
+  dbi:SQLite:smsarc.db

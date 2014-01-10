@@ -14,6 +14,8 @@ extends 'DBIx::Class::Core';
 __PACKAGE__->load_components("InflateColumn::DateTime");
 __PACKAGE__->table("contact");
 __PACKAGE__->add_columns(
+  "phone_id",
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 0, size => 32 },
   "number",
   { data_type => "varchar", is_nullable => 0, size => 32 },
   "full_name",
@@ -31,10 +33,16 @@ __PACKAGE__->has_many(
   { "foreign.number" => "self.number" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+__PACKAGE__->belongs_to(
+  "phone",
+  "RA::SmsArc::DB::Result::Phone",
+  { id => "phone_id" },
+  { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
+);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-09 17:16:24
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6dqHzafqX6CiSczr/Ljgig
+# Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-10 12:37:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QK4pvvwzLOBgK2ogDfmSog
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

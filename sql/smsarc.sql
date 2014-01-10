@@ -6,8 +6,11 @@ CREATE TABLE [phone] (
 
 DROP TABLE IF EXISTS [contact];
 CREATE TABLE [contact] (
+  [phone_id] varchar(32) NOT NULL,
   [number] varchar(32) PRIMARY KEY NOT NULL,
-  [full_name] varchar(64) DEFAULT NULL
+  [full_name] varchar(64) DEFAULT NULL,
+  FOREIGN KEY ([phone_id]) REFERENCES [phone] ([id]) 
+   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 /* http://android.riteshsahu.com/apps/sms-backup-restore */
