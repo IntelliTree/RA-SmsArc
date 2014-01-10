@@ -45,6 +45,37 @@ __PACKAGE__->belongs_to(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QK4pvvwzLOBgK2ogDfmSog
 
 
+__PACKAGE__->has_many(
+  "sent_messages",
+  "RA::SmsArc::DB::Result::Message",
+  { "foreign.number" => "self.number" },
+  { cascade_copy => 0, cascade_delete => 0,
+    where => { type_id => 2 }
+  },
+);
+
+__PACKAGE__->has_many(
+  "recv_messages",
+  "RA::SmsArc::DB::Result::Message",
+  { "foreign.number" => "self.number" },
+  { cascade_copy => 0, cascade_delete => 0,
+    where => { type_id => 1 }
+  },
+);
+
+__PACKAGE__->has_many(
+  "othr_messages",
+  "RA::SmsArc::DB::Result::Message",
+  { "foreign.number" => "self.number" },
+  { cascade_copy => 0, cascade_delete => 0,
+    where => { -and => [
+      { type_id => { '!=' => 1 } }, 
+      { type_id => { '!=' => 2 } }
+    ]}
+  },
+);
+
+
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;
