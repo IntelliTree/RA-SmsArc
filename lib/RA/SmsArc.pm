@@ -9,6 +9,9 @@ use RapidApp 0.99027;
 use Catalyst qw/
     -Debug
     RapidApp::RapidDbic
+    RapidApp::AuthCore
+    RapidApp::NavCore
+    RapidApp::CoreSchemaAdmin
 /;
 
 extends 'Catalyst';
@@ -41,8 +44,11 @@ __PACKAGE__->config(
             },
             Message => {
               columns => {
+                id => { hidden  => 1 },
                 read => { profiles => ['bool'], hidden => 1 },
-                body => { width => 250 }
+                number => { width => 140 },
+                phone => { hidden => 1 },
+                body => { width => 300 }
               }
             },
             MessageType => {

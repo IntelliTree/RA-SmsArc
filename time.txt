@@ -10,7 +10,7 @@
     - Import Model: 24 mins
 
 3. RapidApp configs
-    - Base app setup: 5 mins
+    - Base app setup: 10 mins
     - TableSpec config: 10 mins
     - CSS/design tweaks: 35 mins
 
