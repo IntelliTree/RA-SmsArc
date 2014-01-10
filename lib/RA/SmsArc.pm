@@ -22,6 +22,9 @@ __PACKAGE__->config(
 
     'Plugin::RapidApp::RapidDbic' => {
       dbic_models => ['DB'],
+      # automatically hide columns like 'type_id' and 'phone_id' because
+      # we can access them via their single relnames 'type' and 'phone'
+      hide_fk_columns => 1, 
       configs => {
         DB => {
           grid_params => {
@@ -36,8 +39,17 @@ __PACKAGE__->config(
             Contact => {
               display_column => 'full_name'
             },
+            Message => {
+              columns => {
+                read => { profiles => ['bool'], hidden => 1 },
+                body => { width => 250 }
+              }
+            },
             MessageType => {
               display_column => 'name'
+            },
+            Phone => {
+            
             }
           
           }

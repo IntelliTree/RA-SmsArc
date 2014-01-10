@@ -1,0 +1,4 @@
+/* Turn on normal text wrap in grid cells */
+.x-grid3-cell-inner {
+  white-space: normal;
+}
