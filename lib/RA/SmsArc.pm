@@ -21,9 +21,29 @@ __PACKAGE__->config(
     disable_component_resolution_regex_fallback => 1,
 
     'Plugin::RapidApp::RapidDbic' => {
-	dbic_models => ['DB']
+      dbic_models => ['DB'],
+      configs => {
+        DB => {
+          grid_params => {
+            # Enable full read/write in all sources:
+            '*defaults' => { # Defaults for all Sources
+               updatable_colspec => ['*'],
+               creatable_colspec => ['*'],
+               destroyable_relspec => ['*']
+            }, # ('*defaults')
+          },
+          TableSpecs => {
+            Contact => {
+              display_column => 'full_name'
+            },
+            MessageType => {
+              display_column => 'name'
+            }
+          
+          }
+        }
+      }
     }
-
 );
 
 # Start the application

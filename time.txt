@@ -10,3 +10,8 @@
 
 3. RapidApp configs
     - Base app setup: 5 mins
+    - TableSpec config: 5 mins
+
+
+A. RapidApp bug fixes
+    - d9dea20af0a: 25 mins
