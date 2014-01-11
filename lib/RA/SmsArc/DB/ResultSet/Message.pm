@@ -3,8 +3,9 @@ package RA::SmsArc::DB::ResultSet::Message;
 use strict;
 use warnings;
 
-use base 'DBIx::Class::ResultSet';
+use base 'RA::SmsArc::DB::PhonePermsRs';
 
+use RapidApp::Include qw(sugar perlutil);
 use RA::SmsArc::Parser;
 
 sub schema { (shift)->result_source->schema }
@@ -32,6 +33,5 @@ sub import {
     body => $_->{body}
   }} @{$P->messages} ]);
 }
-
 
 1;
