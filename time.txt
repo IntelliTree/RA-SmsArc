@@ -8,7 +8,7 @@
 2. Biz Logic
     - RA::SmsArc::Parser: 32 mins
     - Import Model: 24 mins
-    - Permissions: 50 mins
+    - Permissions: 70 mins
 
 3. RapidApp configs
     - Base app setup: 10 mins

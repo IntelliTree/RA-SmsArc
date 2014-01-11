@@ -32,9 +32,10 @@ sub base_rs {
     $id
   } grep { /phone:/ } keys %roles;
   
+  # Use 'as_subselect_rs' to prevent ambiguous column exceptions
   return $self->search_rs({ 
     $self->phone_id_column => { -in => \@phone_ids }
-  });
+  })->as_subselect_rs;
 }
 
 1;
