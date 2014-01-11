@@ -27,7 +27,9 @@ __PACKAGE__->config(
       dbic_models => ['DB'],
       # automatically hide columns like 'type_id' and 'phone_id' because
       # we can access them via their single relnames 'type' and 'phone'
-      hide_fk_columns => 1, 
+      hide_fk_columns => 1,
+      # don't *show* the grid links in the tree
+      menu_require_role => 'administrator',
       configs => {
         DB => {
           grid_params => {
