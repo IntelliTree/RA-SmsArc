@@ -15,6 +15,8 @@
     - TableSpec config: 10 mins
     - CSS/design tweaks: 35 mins
 
+4. Custom Interfaces
+    - Import View (grid button): 35 mins
 
 A. RapidApp bug fixes
     - d9dea20af0a: 25 mins

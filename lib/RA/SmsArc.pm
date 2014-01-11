@@ -39,6 +39,11 @@ __PACKAGE__->config(
                creatable_colspec => ['*'],
                destroyable_relspec => ['*']
             }, # ('*defaults')
+            Message => {
+              # Load the grid plugin for the import interface view
+              # (see Ext.ux.SmsArc.ImportMessagesPlugin in local.js)
+              plugins => ['smsarc-grid-import-messages']
+            }
           },
           TableSpecs => {
             Contact => {
