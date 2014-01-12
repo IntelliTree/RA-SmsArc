@@ -72,7 +72,9 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
       useSubmit: true,
       fileUpload: true,
       fieldset: fieldset,
-      success: function(){ plugin.importCallback.apply(plugin,arguments); }
+      disableBtn: true,
+      success: function(){ plugin.importCallback.apply(plugin,arguments); },
+      failure: function(){ plugin.importCallback.apply(plugin,arguments); }
     });
     
   },
@@ -85,7 +87,9 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
       this.grid.store.reload();
     }
     else {
-      Ext.Msg.alert("Unexpected Error","Not sure what happened");
+      // very simple error handing
+      var msg = result.msg || "Unknown error";
+      Ext.Msg.alert("Error",msg);
     }
   }
 
