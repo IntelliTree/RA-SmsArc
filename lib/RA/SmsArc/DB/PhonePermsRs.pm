@@ -16,7 +16,8 @@ sub base_rs {
   my $self = shift;
   my $c = RapidApp->active_request_context;
   
-  return $self unless ($c && $c->can('user'));
+  # invalid sessions are automatically handled by RapidApp
+  return $self unless ($c && $c->session_is_valid);
   
   my %roles = map { 
     $_->get_column('role') => 1

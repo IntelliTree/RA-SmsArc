@@ -47,7 +47,7 @@ sub index :Path :Args(0) {
   }
   catch {
     my $err = shift;
-    $packet = { success => 0, msg => $err->stringify };
+    $packet = { success => 0, msg => "$err" };
   };
   
   return $c->res->body(encode_json($packet));
