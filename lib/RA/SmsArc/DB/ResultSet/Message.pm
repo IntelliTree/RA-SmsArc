@@ -20,7 +20,7 @@ sub import {
   
   $PhoneRs->find_or_create({ id => $phone_id });
   
-  $self->populate([ map {{
+  $self->find_or_create({
     phone_id  => $phone_id,
     timestamp => join(' ',$_->{date_dt}->ymd,$_->{date_dt}->hms),
     number => $ContactRs->find_or_create({
@@ -31,7 +31,7 @@ sub import {
     type_id => $_->{type},
     read => $_->{read},
     body => $_->{body}
-  }} @{$P->messages} ]);
+  }) for (@{$P->messages});
 }
 
 1;
