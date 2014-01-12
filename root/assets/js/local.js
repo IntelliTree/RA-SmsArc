@@ -48,7 +48,8 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
       name: 'Filedata',
       buttonText: 'Browse',
       hideLabel: true,
-      anchor: '100%'
+      anchor: '100%',
+      allowBlank:false
     };
     
     var fieldset = {
@@ -67,7 +68,6 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
       title: 'Import Messages (XML Backup)',
       width: 450,
       height:170,
-      disableBtn: true,
       url: this.import_url, 
       useSubmit: true,
       fileUpload: true,
@@ -80,7 +80,7 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
   importCallback: function(form,opts) {
     var result = opts.result;
     if(result.success) {
-      Ext.Msg.alert("SUCCESS","IMPORTED " + result.added_count + " MESSAGES");
+      Ext.Msg.alert("SUCCESS","Import successful");
       // reload the store so we can see the updated messages:
       this.grid.store.reload();
     }
