@@ -13,8 +13,8 @@ use RA::SmsArc;
 
 my ($phone_id, $xml) = @ARGV;
 
-# Just for testing...
-#my $Obj = RA::SmsArc::Parser->new( file => $xml );
-#scream( $Obj );
+print "\n\n Importing messages...";
 
-RA::SmsArc->model('DB::Message')->import($phone_id, $xml);
+my $count = RA::SmsArc->model('DB::Message')->import($phone_id, $xml);
+
+print "added $count new messages.\n\n";

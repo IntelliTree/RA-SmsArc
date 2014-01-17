@@ -23,6 +23,7 @@ sub index :Path :Args(0) {
   # be called which we need to happen so our button will be re-enabled.
   # See the client/view side Ext.ux.SmsArc.ImportMessagesPlugin (local.js)
   try {
+    my $count;
     $cS->txn_do( sub {
 
       my $role_name = "phone:$phone_id";
@@ -40,10 +41,13 @@ sub index :Path :Args(0) {
         });
       }
       
-      $c->model('DB::Message')->import($phone_id, $upload->tempname);
+      $count = $c->model('DB::Message')->import($phone_id, $upload->tempname);
     });
     
-    $packet = { success => 1 };
+    $packet = { 
+      success => 1, 
+      msg => "Import successful - added $count new messages"
+    };
   }
   catch {
     my $err = shift;

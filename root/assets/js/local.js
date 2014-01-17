@@ -82,7 +82,8 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
   importCallback: function(form,opts) {
     var result = opts.result;
     if(result.success) {
-      Ext.Msg.alert("SUCCESS","Import successful");
+      var msg = result.msg || 'Import successful';
+      Ext.Msg.alert("SUCCESS",msg);
       // reload the store so we can see the updated messages:
       this.grid.store.reload();
     }
