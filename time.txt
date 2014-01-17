@@ -1,4 +1,4 @@
-# Time spent building this app: (~ 6 hours)
+# Time spent building this app: (~ 7 hours)
 
 1. Model Design (50 mins)
     - prelim DDL: 27 min
@@ -7,8 +7,8 @@
 
 2. Biz Logic (132 mins)
     - RA::SmsArc::Parser: 32 mins
-    - Import Model: 30 mins
-    - Permissions: 70 mins
+    - Import Model: 60 mins
+    - Permissions: 100 mins
 
 3. RapidApp configs (55 mins)
     - Base app setup: 10 mins
