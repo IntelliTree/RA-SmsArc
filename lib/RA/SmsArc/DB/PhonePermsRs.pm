@@ -9,33 +9,18 @@ use warnings;
 use base 'RapidApp::DBIC::ResultSet::BaseRs';
 
 use RapidApp::Include qw(sugar perlutil);
+use RA::SmsArc::Util;
 
 sub phone_id_column { 'phone_id' }
 
 sub base_rs {
   my $self = shift;
-  my $c = RapidApp->active_request_context;
   
-  # invalid sessions are automatically handled by RapidApp
-  return $self unless ($c && $c->session_is_valid);
-  
-  my %roles = map { 
-    $_->get_column('role') => 1
-  } $c->user->user_to_roles->all;
-  
-  # administrators can see all phones:
-  return $self if ($roles{administrator});
-  
-  # Get all the phone ids this user is allowed to access according
-  # to the special 'phone:phone_id' role syntax
-  my @phone_ids = map {
-    my ($pre,$id) = split(/phone:/,$_,2);
-    $id
-  } grep { /phone:/ } keys %roles;
+  my $phn = RA::SmsArc::Util->context_limit_phones or return $self;
   
   # Use 'as_subselect_rs' to prevent ambiguous column exceptions
   return $self->search_rs({ 
-    $self->phone_id_column => { -in => \@phone_ids }
+    $self->phone_id_column => { -in => [ keys %$phn ] }
   })->as_subselect_rs;
 }
 

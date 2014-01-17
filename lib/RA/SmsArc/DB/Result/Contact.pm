@@ -44,6 +44,7 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-10 12:37:58
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QK4pvvwzLOBgK2ogDfmSog
 
+__PACKAGE__->load_components('+RA::SmsArc::DB::PhonePermsCmp');
 
 __PACKAGE__->has_many(
   "sent_messages",
