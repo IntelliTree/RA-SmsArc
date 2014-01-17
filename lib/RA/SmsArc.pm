@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use RapidApp 0.99027;
+use RapidApp 0.99028;
 
 use Catalyst qw/
     -Debug
@@ -34,6 +34,9 @@ __PACKAGE__->config(
         DB => {
           grid_params => {
             # Enable full read/write in all sources:
+            #  Note, in a real app, probably only delete would make sense,
+            #  but I'm leaving them all on, including manual create, for
+            #  the purposes of demoing RapidApp basic CRUD features
             '*defaults' => { # Defaults for all Sources
                updatable_colspec => ['*'],
                creatable_colspec => ['*'],
