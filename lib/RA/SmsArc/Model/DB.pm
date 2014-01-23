@@ -1,7 +1,6 @@
 package RA::SmsArc::Model::DB;
-
-use strict;
-use base 'Catalyst::Model::DBIC::Schema';
+use Moose;
+extends 'Catalyst::Model::DBIC::Schema';
 
 use Path::Class qw(file);
 use Catalyst::Utils;
