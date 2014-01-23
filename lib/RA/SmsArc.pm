@@ -16,12 +16,19 @@ use Catalyst qw/
 
 extends 'Catalyst';
 
-our $VERSION = '0.01';
+our $VERSION = '1.0';
+our $TITLE = "RA::SmsArc v" . $VERSION;
 
 __PACKAGE__->config(
     name => 'RA::SmsArc',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
+
+    'Plugin::RapidApp::TabGui' => {
+      title => $TITLE,
+      nav_title => 'SMS Archive',
+      dashboard_url => '/tple/readme.md',
+    },
 
     'Plugin::RapidApp::RapidDbic' => {
       dbic_models => ['DB'],
@@ -50,9 +57,13 @@ __PACKAGE__->config(
           },
           TableSpecs => {
             Contact => {
-              display_column => 'full_name'
+              display_column => 'full_name',
+              title   => 'Contact',    title_multi  => 'Contacts',
+              iconCls => 'icon-vcard', multiIconCls => 'icon-vcards'
             },
             Message => {
+              title   => 'Message',    title_multi  => 'Messages',
+              iconCls => 'icon-email', multiIconCls => 'icon-emails',
               columns => {
                 id => { hidden  => 1 },
                 read => { profiles => ['bool'], hidden => 1 },
@@ -62,10 +73,12 @@ __PACKAGE__->config(
               }
             },
             MessageType => {
-              display_column => 'name'
+              display_column => 'name',
+              title   => 'Message Type',    title_multi  => 'Message Types',
             },
             Phone => {
-            
+              title   => 'Phone',      title_multi  => 'Phones',
+              iconCls => 'icon-phone', multiIconCls => 'icon-phones'
             }
           
           }

@@ -1,11 +1,11 @@
-# Time spent building this app: (~ 7 hours)
+# Time spent building this app (v1.0): ~ 8 hours
 
 1. Model Design (50 mins)
     - prelim DDL: 27 min
     - create db + catalyst model: 3 min
     - DDL tweaks: 20 min
 
-2. Biz Logic (132 mins)
+2. Biz Logic (192 mins)
     - RA::SmsArc::Parser: 32 mins
     - Import Model: 60 mins
     - Permissions: 100 mins
@@ -18,4 +18,4 @@
 4. Custom Interfaces (125 mins)
     - Import View (grid button): 35 mins
     - Import Controller: 90 mins
-
+    - Custom icons: 5 mins
