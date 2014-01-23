@@ -15,6 +15,20 @@ __PACKAGE__->load_namespaces;
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:u1rTaCuyOqcfCRbyFxllEw
 
 
+after 'deploy' => sub {
+  my $self = shift;
+  
+  $self->resultset('MessageType')->populate([
+    { id => 1, name => 'Received' },
+    { id => 2, name => 'Sent' },
+    { id => 3, name => 'Draft' },
+    { id => 4, name => 'Outbox' },
+    { id => 5, name => 'Failed' },
+    { id => 6, name => 'Queued' },
+  ]);
+
+};
+
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
 1;
