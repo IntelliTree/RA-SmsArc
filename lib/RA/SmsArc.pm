@@ -15,7 +15,7 @@ use Catalyst qw/
 
 extends 'Catalyst';
 
-our $VERSION = '1.0';
+our $VERSION = '1.01';
 our $TITLE = "RA::SmsArc v" . $VERSION;
 
 __PACKAGE__->config(

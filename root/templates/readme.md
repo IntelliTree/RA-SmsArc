@@ -10,9 +10,9 @@ Messages can be imported, viewed and searched from the <img src="/assets/local/i
 
 1. Open the <img src="/assets/local/icons/current/emails.png"> <a href="#!/main/db/db_message">Messages Grid</a>.
 2. Click the <i>"Import Messages (XML)"</i> button.
-3. Enter the unique number of the phone/device (i.e. <i>555-123-4567</i>).
+3. Enter the unique number of the phone/device (i.e. <i>5551234567</i>).
 4. Select the XML backup file created by <a target="_blank" href="http://android.riteshsahu.com/apps/sms-backup-restore">SMS Backup & Restore</a>.
-5. Click the <i>Save</i> button. The import my take a few moments depending on size of the file and number of messages.
+5. Click the <i>Import Now</i> button. The import my take several minutes depending on size of the file and number of messages.
 
 * You can import multiple times using multiple backup files and the system will automatically skip existing messages (for the same device phone number). 
 
@@ -58,6 +58,10 @@ I recorded the total time it took me to build the app with a simple breakdown of
     - Custom icons: 5 mins
 
 
+#### (v1.01): ~ 3 hours
+
+Spent another few hours writing up this documentation and some other minor tweaks and improvements, changed the schema a bit, added some more icons, etc. This was optional work, but still brings the grand total time building this, including documentation to ~11 hours.
+    
 ### Source Code
 
 The full source of this application is available <a target="_blank" href="https://github.com/IntelliTree/RA-SmsArc">on Github</a>.

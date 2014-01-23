@@ -72,8 +72,9 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
       useSubmit: true,
       fileUpload: true,
       fieldset: fieldset,
+      submitBtnText: 'Import Now',
       disableBtn: true,
-      disableBtnText: 'Importing, Please Wait...',
+      disableBtnText: 'Importing Messages, Please Wait...',
       success: function(){ plugin.importCallback.apply(plugin,arguments); },
       failure: function(){ plugin.importCallback.apply(plugin,arguments); }
     });
