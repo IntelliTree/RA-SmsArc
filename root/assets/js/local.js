@@ -24,7 +24,7 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
     
     this.btn = new Ext.Button({
       text: 'Import Messages (XML)',
-      iconCls: 'ra-icon-add',
+      iconCls: 'icon-email-add',
       handler:this.importHandler, 
       scope: this
     });
@@ -73,6 +73,7 @@ Ext.ux.SmsArc.ImportMessagesPlugin = Ext.extend(Ext.util.Observable,{
       fileUpload: true,
       fieldset: fieldset,
       disableBtn: true,
+      disableBtnText: 'Importing, Please Wait...',
       success: function(){ plugin.importCallback.apply(plugin,arguments); },
       failure: function(){ plugin.importCallback.apply(plugin,arguments); }
     });

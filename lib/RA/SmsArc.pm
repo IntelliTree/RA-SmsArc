@@ -4,10 +4,9 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use RapidApp 0.99028;
+use RapidApp 0.99029;
 
 use Catalyst qw/
-    -Debug
     RapidApp::RapidDbic
     RapidApp::AuthCore
     RapidApp::NavCore
