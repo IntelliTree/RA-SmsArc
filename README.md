@@ -1,8 +1,8 @@
 ## SMS Archive
 
-This is a simple web application for importing and archiving SMS messages backed up from Android phones using the popular <a target="_blank" href="http://android.riteshsahu.com/apps/sms-backup-restore">SMS Backup & Restore</a> App (XML backup files).
+This is a simple web application for importing and archiving SMS messages backed up from Android phones using the popular SMS Backup & Restore App (XML backup files).
 
-Messages can be uploaded, viewed and searched from the <a href="#!/main/db/db_message">Messages Grid</a>.
+Messages can be uploaded, viewed and searched from the Messages Grid.
 
 ### Built with RapidApp
 
@@ -32,15 +32,3 @@ I recorded the total time it took me to build the app with a simple breakdown of
     - Import View (grid button): 35 mins
     - Import Controller: 90 mins
     - Custom icons: 5 mins
-
-
-### Source Code
-
-The full source of this application is available <a target="_blank" href="https://github.com/IntelliTree/RA-SmsArc">on Github</a>.
-
-Also see <a target="_blank" href="http://www.rapidapp.info">www.rapidapp.info</a> for more information.
-
-### Author
-
-Henry Van Styn <br>
-<vanstyn@intellitree.com>
