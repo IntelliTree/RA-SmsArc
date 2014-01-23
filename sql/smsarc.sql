@@ -6,12 +6,14 @@ CREATE TABLE [phone] (
 
 DROP TABLE IF EXISTS [contact];
 CREATE TABLE [contact] (
+  [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   [phone_id] varchar(32) NOT NULL,
-  [number] varchar(32) PRIMARY KEY NOT NULL,
+  [number] varchar(32) NOT NULL,
   [full_name] varchar(64) DEFAULT NULL,
   FOREIGN KEY ([phone_id]) REFERENCES [phone] ([id]) 
-   ON DELETE NO ACTION ON UPDATE NO ACTION
+   ON DELETE CASCADE ON UPDATE CASCADE
 );
+CREATE UNIQUE INDEX ph_contact ON contact(phone_id,number);
 
 /* http://android.riteshsahu.com/apps/sms-backup-restore */
 DROP TABLE IF EXISTS [message_type];
@@ -32,13 +34,13 @@ CREATE TABLE [message] (
   [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   [phone_id] varchar(32) NOT NULL,
   [timestamp] DATETIME NOT NULL,
-  [number] varchar(32) NOT NULL,
+  [contact_id] INTEGER NOT NULL,
   [type_id] INTEGER NOT NULL,
   [read] INTEGER NOT NULL DEFAULT 1,
   [body] TEXT,
   FOREIGN KEY ([phone_id]) REFERENCES [phone] ([id]) 
-   ON DELETE NO ACTION ON UPDATE NO ACTION,
-  FOREIGN KEY ([number]) REFERENCES [contact] ([number]) 
+   ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY ([contact_id]) REFERENCES [contact] ([id]) 
    ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY ([type_id]) REFERENCES [message_type] ([id]) 
    ON DELETE NO ACTION ON UPDATE NO ACTION

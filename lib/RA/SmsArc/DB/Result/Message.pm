@@ -20,8 +20,8 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_foreign_key => 1, is_nullable => 0, size => 32 },
   "timestamp",
   { data_type => "datetime", is_nullable => 0 },
-  "number",
-  { data_type => "varchar", is_foreign_key => 1, is_nullable => 0, size => 32 },
+  "contact_id",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "type_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "read",
@@ -31,16 +31,16 @@ __PACKAGE__->add_columns(
 );
 __PACKAGE__->set_primary_key("id");
 __PACKAGE__->belongs_to(
-  "number",
+  "contact",
   "RA::SmsArc::DB::Result::Contact",
-  { number => "number" },
+  { id => "contact_id" },
   { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
 );
 __PACKAGE__->belongs_to(
   "phone",
   "RA::SmsArc::DB::Result::Phone",
   { id => "phone_id" },
-  { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
+  { is_deferrable => 0, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 __PACKAGE__->belongs_to(
   "type",
@@ -50,8 +50,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-09 17:16:24
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Q+Y3+OkqDavGOWkF3/i7Eg
+# Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-23 16:01:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:q8uJjBC7FHpSCEvthf1WVQ
 
 __PACKAGE__->load_components('+RA::SmsArc::DB::PhonePermsCmp');
 

@@ -14,6 +14,8 @@ extends 'DBIx::Class::Core';
 __PACKAGE__->load_components("InflateColumn::DateTime");
 __PACKAGE__->table("contact");
 __PACKAGE__->add_columns(
+  "id",
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "phone_id",
   { data_type => "varchar", is_foreign_key => 1, is_nullable => 0, size => 32 },
   "number",
@@ -26,30 +28,31 @@ __PACKAGE__->add_columns(
     size => 64,
   },
 );
-__PACKAGE__->set_primary_key("number");
+__PACKAGE__->set_primary_key("id");
+__PACKAGE__->add_unique_constraint("phone_id_number_unique", ["phone_id", "number"]);
 __PACKAGE__->has_many(
   "messages",
   "RA::SmsArc::DB::Result::Message",
-  { "foreign.number" => "self.number" },
+  { "foreign.contact_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 __PACKAGE__->belongs_to(
   "phone",
   "RA::SmsArc::DB::Result::Phone",
   { id => "phone_id" },
-  { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
+  { is_deferrable => 0, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-10 12:37:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QK4pvvwzLOBgK2ogDfmSog
+# Created by DBIx::Class::Schema::Loader v0.07037 @ 2014-01-23 16:01:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QKxpqFHUSvYfYsI1g9/bUg
 
 __PACKAGE__->load_components('+RA::SmsArc::DB::PhonePermsCmp');
 
 __PACKAGE__->has_many(
   "sent_messages",
   "RA::SmsArc::DB::Result::Message",
-  { "foreign.number" => "self.number" },
+  { "foreign.contact_id" => "self.id"  },
   { cascade_copy => 0, cascade_delete => 0,
     where => { type_id => 2 }
   },
@@ -58,7 +61,7 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "recv_messages",
   "RA::SmsArc::DB::Result::Message",
-  { "foreign.number" => "self.number" },
+  { "foreign.contact_id" => "self.id"  },
   { cascade_copy => 0, cascade_delete => 0,
     where => { type_id => 1 }
   },
@@ -67,7 +70,7 @@ __PACKAGE__->has_many(
 __PACKAGE__->has_many(
   "othr_messages",
   "RA::SmsArc::DB::Result::Message",
-  { "foreign.number" => "self.number" },
+  { "foreign.contact_id" => "self.id"  },
   { cascade_copy => 0, cascade_delete => 0,
     where => { -and => [
       { type_id => { '!=' => 1 } }, 

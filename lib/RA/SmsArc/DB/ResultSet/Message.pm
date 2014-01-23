@@ -26,11 +26,11 @@ sub import {
     my $Row = $self->find_or_new({
       phone_id  => $phone_id,
       timestamp => join(' ',$msg->{date_dt}->ymd,$msg->{date_dt}->hms),
-      number => $ContactRs->find_or_create({
+      contact => $ContactRs->find_or_create({
         phone_id  => $phone_id,
         number => $msg->{address},
         full_name => $msg->{contact_name}
-      },{ key => 'primary' })->number,
+      },{ key => 'phone_id_number_unique' }),
       type_id => $msg->{type},
       read => $msg->{read},
       body => $msg->{body}
