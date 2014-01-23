@@ -19,6 +19,8 @@ sub index :Path :Args(0) {
   # default state of return packet - should never be returned
   my $packet = { success => 0, msg => 'unknown error' };
   
+  my $start = time;
+  
   # Do our own simple error handling so that Ajax 'failure' function will 
   # be called which we need to happen so our button will be re-enabled.
   # See the client/view side Ext.ux.SmsArc.ImportMessagesPlugin (local.js)
@@ -44,9 +46,13 @@ sub index :Path :Args(0) {
       $count = $c->model('DB::Message')->import($phone_id, $upload->tempname);
     });
     
+    my $elapsed = time - $start;
     $packet = { 
       success => 1, 
-      msg => "Import successful - added $count new messages"
+      msg => join("\n",
+        "<b>Import successful</b><br><br>",
+        "Added $count new messages in $elapsed seconds"
+      )
     };
   }
   catch {
