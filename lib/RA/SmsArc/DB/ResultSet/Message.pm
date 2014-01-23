@@ -18,10 +18,32 @@ sub import {
   my $PhoneRs = $self->schema->resultset('Phone');
   my $ContactRs = $self->schema->resultset('Contact');
   
-  $PhoneRs->find_or_create({ id => $phone_id });
+  my $PhRow = $PhoneRs->find_or_new({ id => $phone_id });
+  unless ($PhRow->in_storage) {
+    # If this is a brand new phone_id, we know that there will not
+    # be any existing Message or Contact rows, so we can use the
+    # faster populate() call:
+    $PhRow->insert;
+    $self->populate([ map {{
+      phone_id  => $phone_id,
+      timestamp => join(' ',$_->{date_dt}->ymd,$_->{date_dt}->hms),
+      contact => {
+        phone_id  => $phone_id,
+        number => $_->{address},
+        full_name => $_->{contact_name}
+      },
+      type_id => $_->{type},
+      read => $_->{read},
+      body => $_->{body}
+    }} @{$P->messages} ]);
+    
+    # Just return the count of messages passed to populate():
+    return scalar @{$P->messages};
+  }
   
+  # We're importing messages for an existing phone, so we need to
+  # check for and skip duplicate messages and contacts:
   my @added = ();
-  
   for my $msg (@{$P->messages}) {
     my $Row = $self->find_or_new({
       phone_id  => $phone_id,
