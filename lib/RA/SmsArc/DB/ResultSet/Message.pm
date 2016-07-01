@@ -5,7 +5,7 @@ use warnings;
 
 use base 'RA::SmsArc::DB::PhonePermsRs';
 
-use RapidApp::Include qw(sugar perlutil);
+use RapidApp::Util qw(:all);
 use RA::SmsArc::Parser;
 
 sub schema { (shift)->result_source->schema }

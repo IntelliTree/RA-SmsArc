@@ -10,7 +10,7 @@ use warnings;
 
 use base 'DBIx::Class';
 
-use RapidApp::Include qw(sugar perlutil);
+use RapidApp::Util qw(:all);
 use RA::SmsArc::Util;
 
 sub _enforce_permission {

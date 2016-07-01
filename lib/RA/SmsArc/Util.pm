@@ -3,7 +3,7 @@ package RA::SmsArc::Util;
 use strict;
 use warnings;
 
-use RapidApp::Include qw(sugar perlutil);
+use RapidApp::Util qw(:all);
 
 # returns hashref of phone_id (keys) the user is allowed to access,
 # or undef for no limit (access to all phone_ids)

@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use RapidApp 0.99029;
+use RapidApp 1.0;
 
 use Catalyst qw/
     RapidApp::RapidDbic

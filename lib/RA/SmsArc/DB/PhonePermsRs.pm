@@ -8,7 +8,7 @@ use warnings;
 
 use base 'RapidApp::DBIC::ResultSet::BaseRs';
 
-use RapidApp::Include qw(sugar perlutil);
+use RapidApp::Util qw(:all);
 use RA::SmsArc::Util;
 
 sub phone_id_column { 'phone_id' }
